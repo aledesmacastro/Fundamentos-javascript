@@ -42,7 +42,7 @@ var angela = {
 
 // const mayoriaDeEdad = persona => persona.edad >= MAYORIA_DE_EDAD;
 
-const mayoriaDeEdad = ({edad}) => edad >= MAYORIA_DE_EDAD;
+const mayoriaDeEdad = ({ edad }) => edad >= MAYORIA_DE_EDAD;
 
 
 function imprimirDatosPersona(persona) {
@@ -56,7 +56,7 @@ function imprimirDatosPersona(persona) {
 }
 
 function permitirAcceso(persona) {
-    if (!mayoriaDeEdad(persona)){
+    if (!mayoriaDeEdad(persona)) {
         // eslint-disable-next-line no-console
         console.log(`${persona.nombre} ¡su acceso ha sido denegado!`);
     } else {
