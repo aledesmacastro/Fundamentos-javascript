@@ -17,6 +17,7 @@ module.exports = {
         "semi-style": ["error", "last"],
         "semi-spacing": ["error", { "before": false, "after": true }],
         "no-plusplus": 1,
-        "eqeqeq": "error"
+        "eqeqeq": "error",
+        "allowForLoopAfterthoughts": true
     }
 };
