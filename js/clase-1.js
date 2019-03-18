@@ -1,68 +1,27 @@
-/* global*/
-var anibal = {
-    nombre: 'Anibal',
-    apellido: 'Ledesma',
-    edad: 33,
-    ocupacion: 'Front End',
-    peso: 84,
-    altura: 1.69,
-    cantidadLibros: 15
+/* PROTOTIPOS EN JAVASCRIPT */
+function persona(nombre, apellido, estatura, ocupacion) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.estatura = estatura;
+    this.ocupacion = ocupacion;
 }
-var laura = {
-    nombre: 'Laura',
-    apellido: 'Ledesma',
-    edad: 20,
-    ocupacion: 'Tecnóloga en quimica',
-    peso: 50,
-    altura: 1.58,
-    cantidadLibros: 10
-}
-var angela = {
-    nombre: 'Angela',
-    apellido: 'Ledesma',
-    edad: 32,
-    ocupacion: 'Psicologa',
-    peso: 60,
-    altura: 1.57,
-    cantidadLibros: 5
-}
-var juan = {
-    nombre: 'Juan Carlos',
-    apellido: 'Ledesma',
-    edad: 21,
-    ocupacion: 'Barbero',
-    peso: 65,
-    altura: 1.75,
-    cantidadLibros: 20
-}
-
-var personas = [anibal, angela, laura, juan];
-const esAlta = ({altura}) => altura > 1.68;
-const esBaja = ({altura}) => altura < 1.58;
-
-for (let index = 0; index < personas.length; index+=1) {
-    var persona = personas[index];
+persona.prototype.saludar = function () {
     // eslint-disable-next-line no-console
-    console.log(`${persona.nombre} mide ${persona.altura.toFixed(2)}`);
+    console.log(`Hola mi nombre es ${this.nombre} ${this.apellido}.`);
 }
 
-var pasarAlturaACms = persona => ({
-    ...persona,
-    altura: persona.altura * 100
-});
+persona.prototype.myAltura = function () {
+    var myEstatura = this.estatura * 100;
+    if (myEstatura <= 155) {
+        // eslint-disable-next-line no-console
+        console.log(`mi estatura es ${this.estatura}, por tal motivo soy una persona bajita`);
+    } else {
+        // eslint-disable-next-line no-console
+        console.log(`mi estatura es ${this.estatura}, por tal motivo soy una persona alta`);
+    }
+}
+const anibal = new persona('Anibal', 'Ledesma', 1.69);
+const angela = new persona('Angela', 'Ledesma', 1.55);
 
-var totalLibros = (cont, {cantidadLibros}) => cont + cantidadLibros;
-
-var personasAltas = personas.filter(esAlta);
-var personasBajas = personas.filter(esBaja);
-var cantidadTotalLibros = personas.reduce(totalLibros, 0);
-
-var personasCms = personas.map(pasarAlturaACms)
-// eslint-disable-next-line no-console
-console.log(personasAltas);
-// eslint-disable-next-line no-console
-console.log(personasBajas);
-// eslint-disable-next-line no-console
-console.log(personasCms);
-// eslint-disable-next-line no-console
-console.log(cantidadTotalLibros);
+anibal.saludar();
+angela.saludar();
