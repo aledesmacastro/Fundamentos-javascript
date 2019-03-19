@@ -1,5 +1,5 @@
-/* CLASES Y HERENCIA */
-class persona {
+/* FUNCIONES COMO PARAMETROS */
+class Persona {
     constructor(nombre, apellido, estatura, ocupacion) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -7,11 +7,14 @@ class persona {
         this.ocupacion = ocupacion;
     }
 
-    saludar() {
+    saludar(fn) {
+        var { nombre, apellido } = this
         // eslint-disable-next-line no-console
-        console.log(`Hola mi nombre es ${this.nombre} ${this.apellido}.`);
+        console.log(`Hola mi nombre es ${nombre} ${apellido}.`);
+        if (fn) {
+            fn(nombre, apellido, false, true)
+        }
     }
-
 
     myAltura () {
         var myEstatura = this.estatura * 100;
@@ -26,21 +29,71 @@ class persona {
 }
 
 
-class desarrollador extends persona {
+class Desarrollador extends Persona {
     constructor(nombre, apellido, estatura) {
         super(nombre, apellido, estatura)
-        // this.nombre = nombre;
-        // this.apellido = apellido;
-        // this.estatura = estatura;
     }
 
-    saludar () {
+    saludar (fn) {
+        var { nombre, apellido } = this
         // eslint-disable-next-line no-console
-        console.log(`Hola mi nombre es ${this.nombre} ${this.apellido} y soy un desarrollador`);
+        console.log(`Hola mi nombre es ${nombre} ${apellido} y soy un desarrollador`);
+        if (fn) {
+            fn(nombre, apellido, true)
+        }
+    }
+}
+class Psicologa extends Persona {
+    constructor(nombre, apellido, estatura) {
+        super(nombre, apellido, estatura)
+    }
+
+    saludar (fn) {
+        var { nombre, apellido } = this
+        // eslint-disable-next-line no-console
+        console.log(`Hola mi nombre es ${nombre} ${apellido}`);
+        if (fn) {
+            fn(nombre, apellido, false, true)
+        }
     }
 }
 
-// eslint-disable-next-line no-unused-vars
-const anibal = new desarrollador('Anibal', 'Ledesma', 1.69);
-// eslint-disable-next-line no-unused-vars
-const angela = new persona('Angela', 'Ledesma', 1.55);
+class Quimica extends Persona {
+    constructor(nombre, apellido, estatura) {
+        super(nombre, apellido, estatura)
+    }
+
+    saludar (fn) {
+        var { nombre, apellido } = this
+        // eslint-disable-next-line no-console
+        console.log(`Hola mi nombre es ${nombre} ${apellido}`);
+        if (fn) {
+            fn(nombre, apellido, false, false, true)
+        }
+    }
+}
+
+function responderSaludo(nombre, apellido, esDev, esPsic, esQuim) {
+    // eslint-disable-next-line no-console
+    console.log(`Buen día ${nombre} ${apellido}`)
+    if (esDev) {
+        // eslint-disable-next-line no-console
+        console.log(`no sabia que tambien eras desarrollador/a`);
+    }
+    if (esPsic) {
+        // eslint-disable-next-line no-console
+        console.log(`Tengo entendido que eres Psicologa`);
+    }
+    if (esQuim) {
+        // eslint-disable-next-line no-console
+        console.log(`Se que eres una excelente Quimica industrial`);
+    }
+}
+
+const anibal = new Desarrollador('Anibal', 'Ledesma', 1.69, 'Desarrollador');
+const angela = new Psicologa('Angela', 'Ledesma', 1.55, 'Psicologa')
+const laura = new Quimica('Laura', 'Ledesma', 1.55, 'Quimica industrial')
+
+anibal.saludar(responderSaludo);
+angela.saludar(responderSaludo);
+laura.saludar(responderSaludo);
