@@ -1,4 +1,4 @@
-/* MULTIPLES PROMESAS EN PARALELO*/
+/* Async-await: LO ÚLTIMO EN ASINCRONISMO*/
 const API_URL = 'https://swapi.co/api/';
 const PEOPLE_URL = 'people/:id';
 const opts = { crossDomain: true };
@@ -20,12 +20,16 @@ function onError(id) {
     console.log(`Sucedio un error al obtener el personaje  ${id}`);
 }
 
-var ids = [1, 2, 3, 4, 5, 6, 7]
-var promesas = ids.map(id => obtenerPersonaje(id))
+async function obtenerLosPersonajes() {
+    var ids = [1, 2, 3, 4, 5, 6, 7]
+    var promesas = ids.map(id => obtenerPersonaje(id))
+    try {
+        var personajes = await Promise.all(promesas)
+        // eslint-disable-next-line no-console  
+        console.log(personajes)
+    } catch (id) {
+        onError(id)
+    }
+}
 
-Promise
-    .all(promesas)
-    // .then(personaje => console.log(`Hola me llamo ${personaje.name} y soy el personaje 1`))
-    // eslint-disable-next-line no-console  
-    .then(personajes => console.log(personajes))
-    .catch(onError)
+obtenerLosPersonajes()
