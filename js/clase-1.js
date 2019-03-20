@@ -1,4 +1,4 @@
-/* MANEJANDO EL ORDEN Y EL ASINCRONISMO DE JAVASCRIPT*/
+/* MANEJO DE ERRORES CON LOS CALLBACKS*/
 const API_URL = 'https://swapi.co/api/';
 const PEOPLE_URL = 'people/:id';
 const opts = { crossDomain: true };
@@ -9,21 +9,40 @@ function obtenerPersonaje(id, callback) {
     // eslint-disable-next-line no-console
     // const onResponse = personaje => console.log(`Hola me llamo ${personaje.name}`);
     // eslint-disable-next-line no-undef
-    $.get(url, opts, function (personaje) {
-         // eslint-disable-next-line no-console
-        console.log(`Hola me llamo ${personaje.name}`);
-
-        if(callback) {
-            callback();
-        }
-    });
+    $.get(url, opts, callback).fail(function(){
+        // eslint-disable-next-line no-console
+        console.log(`Sucedio un error!, no se pudo obtener el personaje ${id}`);
+    })
 }
-obtenerPersonaje(1, function () {
-    obtenerPersonaje(2, function() {
-        obtenerPersonaje(3, function() {
-            obtenerPersonaje(4, function() {
-                obtenerPersonaje(5, function () {
-                    obtenerPersonaje(6)
+
+// obtenerPersonaje(1, function (personaje) {
+//     // eslint-disable-next-line no-console
+//     console.log(`Hola me llamo ${personaje.name}`);
+// })
+
+obtenerPersonaje(1, function (personaje) {
+    // eslint-disable-next-line no-console
+    console.log(`Hola me llamo ${personaje.name}`);
+    obtenerPersonaje(2, function(personaje) {
+        // eslint-disable-next-line no-console
+        console.log(`Hola me llamo ${personaje.name}`);
+        obtenerPersonaje(3, function(personaje) {
+            // eslint-disable-next-line no-console
+            console.log(`Hola me llamo ${personaje.name}`);
+            obtenerPersonaje(4, function(personaje) {
+                // eslint-disable-next-line no-console
+                console.log(`Hola me llamo ${personaje.name}`);
+                obtenerPersonaje(5, function (personaje) {
+                    // eslint-disable-next-line no-console
+                    console.log(`Hola me llamo ${personaje.name}`);
+                    obtenerPersonaje(6, function (personaje) {
+                        // eslint-disable-next-line no-console
+                        console.log(`Hola me llamo ${personaje.name}`);
+                        obtenerPersonaje(7, function(personaje) {
+                            // eslint-disable-next-line no-console
+                            console.log(`Hola me llamo ${personaje.name}`);
+                        })
+                    })
                 })
             })
         })
