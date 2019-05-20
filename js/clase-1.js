@@ -26,7 +26,7 @@ async function obtenerLosPersonajes() {
     try {
         var personajes = await Promise.all(promesas)
         // eslint-disable-next-line no-console  
-        console.log(personajes)
+        console.table(personajes)
     } catch (id) {
         onError(id)
     }

@@ -2,13 +2,26 @@
   "name": "fundamentos-de",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": ".eslintrc.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aledesmacastro/Fundamentos-javascript.git"
+  },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "eslint": "^5.15.2"
+  "bugs": {
+    "url": "https://github.com/aledesmacastro/Fundamentos-javascript/issues"
+  },
+  "homepage": "https://github.com/aledesmacastro/Fundamentos-javascript#readme",
+  "dependencies": {
+    "eslint": "^5.15.3",
+    "postcss-cli": "^6.1.2",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-font-magician": "^2.2.1",
+    "postcss-import": "^12.0.1",
+    "stylelint": "^9.10.1"
   }
 }
